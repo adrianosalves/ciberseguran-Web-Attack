@@ -818,12 +818,33 @@ Reúna algumas informações que podem ser coletadas rapidamente para entender m
 
 Propriedade dos endereços IP e dispositivos.
 Se o tráfego vem de fora (Internet);
-Propriedade do endereço IP (Endereço estático ou de pool? Quem é o proprietário? É hospedagem na web?)
-Reputação do endereço IP (Pesquisa no VirusTotal, AbuseIPDB, Cisco Talos)
+Propriedade do endereço IP (Endereço estático ou de pool? **Statico** Quem é o proprietário? **China Unicom** É hospedagem na web? **sim**)
+Reputação do endereço IP (Pesquisa no VirusTotal: **malicious**, AbuseIPDB: **0 não encotrado**, Cisco Talos: **Questionable**)
 Se o tráfego for proveniente da rede da empresa;
 Nome de host do dispositivo
 Quem é o proprietário do dispositivo (nome de usuário)
 Hora do último logon do usuário
+
+**Examinar o tráfego HTTP**
+
+Verifique o conteúdo do tráfego para quaisquer condições suspeitas, como cargas úteis de ataque da Web (SQL Injection, XSS, Command Injection, IDOR, RFI/LFI).
+**XSS(x)**
+
+Examine todos os campos na solicitação HTTP. Como os invasores não atacam apenas pela URL, todos os dados da fonte devem ser examinados para entender se realmente há um ataque cibernético.
+
+Você pode revisar o tutorial Web Attacks 101 para obter informações sobre ataques em aplicativos da Web e como detectar esses ataques.
+
+**O tráfego é malicioso?**
+
+Decida se o tráfego é malicioso ou não com base em suas investigações.
+
+**Malicioso(x)**
+
+não Malicioso
+
+
+
+
 
 
 
