@@ -779,6 +779,31 @@ Exact date when malicious payload sent
 Reflected
 Correct Answer!
 
+Alto	25 de fevereiro de 2022, 11h34	SOC165 - Possível carga útil de injeção de SQL detectada	115	Ataque na Web	
+ID do evento: 115
+Hora do evento: 25 de fevereiro de 2022, 11h34
+Regra: SOC165 - Possível carga útil de injeção de SQL detectada
+Responda: Verdadeiro Positivo (+5 Pontos)
+Respostas do manual: 
+
+Você precisa de escalonamento de nível 2? (+5 Pontos)
+
+O ataque foi bem sucedido? (+5 Pontos)
+
+Qual é a direção do trânsito? (+5 Pontos)
+
+Verifique se é um teste planejado (+5 pontos)
+
+Qual é o tipo de ataque? (+5 Pontos)
+
+O tráfego é malicioso? (+5 Pontos)
+
+Nota do analista: Vazio! Você deve explicar por que você fechou o alarme dessa maneira.
+Passo a passo da comunidade: mostrar
+
+Nota do Editor: Colocamos o URL solicitado na decodificação de URL e encontramos a carga útil enviada pelo invasor. Após a decodificação de URL, foi confirmado que é SQL Injection. Quando filtramos por endereço de origem na página Gerenciamento de logs, vimos outras solicitações feitas. Quando as solicitações foram examinadas, vimos que todas estavam relacionadas à vulnerabilidade de SQL Injection. Quando o tamanho da resposta de todas as requisições é examinado, verifica-se que todas são iguais e o status da resposta é 500. O ataque SQL Injection é malsucedido, pois haverá diferentes tamanhos de resposta e 200 status de resposta, parece que o ataque não teve sucesso.
+
+
 # Pratique com alertas SOC
 
 🔗 116 - SOC166 - Código Javascript detectado na URL solicitada
@@ -882,8 +907,51 @@ Você pode adivinhar observando o tamanho da resposta HTTP em ataques SQL Inject
 Você pode acessar o treinamento Web Attacks 101 abaixo, no qual explicamos como você pode entender se o ataque é bem-sucedido ou não de acordo com o tipo de ataque.
 
 
+**O ataque foi bem sucedido?**
+Selecione “Sim” se você descobriu que o ataque foi bem-sucedido como resultado de suas investigações e “Não” se você descobriu que o ataque não teve êxito.
 
+**No (x)**
+Sim
 
+**Você precisa de escalonamento de nível 2?**
+
+O escalonamento de nível 2 deve ser executado nas seguintes situações.
+
+Nos casos em que o ataque for bem-sucedido,
+Quando o invasor compromete um dispositivo na rede interna (nos casos em que a direção do tráfego prejudicial é de dentro → de dentro),
+O escalonamento de nível 2 não é necessário nos seguintes casos.
+
+Nos casos em que os ataques da Internet não são bem-sucedidos
+** As instituições podem ter seu próprio procedimento de escalonamento. Não se esqueça de conhecer o procedimento de escalonamento em sua instituição.
+
+Executar o escalonamento de nível 2?
+
+**No (x)**
+Sim
+
+GRAVIDADE	ENCONTRO	NOME DA REGRA	EVENTID	MODELO	RESULTADO
+Médio	26 de fevereiro de 2022, 18h56	SOC166 - Código Javascript detectado na URL solicitada	116	Ataque na Web	
+ID do evento: 116
+Hora do evento: 26 de fevereiro de 2022, 18h56
+Regra: SOC166 - Código Javascript detectado na URL solicitada
+Responda: Verdadeiro Positivo (+5 Pontos)
+Respostas do manual: Você precisa de escalonamento de nível 2? (+5 Pontos)
+
+O ataque foi bem sucedido? (+5 Pontos)
+
+Qual é a direção do trânsito? (+5 Pontos)
+
+Verifique se é um teste planejado (+5 pontos)
+
+Qual é o tipo de ataque? (+5 Pontos)
+
+O tráfego é malicioso? (+5 Pontos)
+
+Nota do analista:
+
+Vazio! Você deve explicar por que você fechou o alarme dessa maneira.
+Passo a passo da comunidade: mostrar
+Nota do Editor: Quando o parâmetro q é examinado, vemos que existe de fato uma carga útil XSS. Como a carga útil está na URL, foi determinado que é um ataque XSS do tipo Reflected. Quando filtramos por endereço IP de origem na página Gerenciamento de logs, vemos que o invasor também tentou diferentes cargas XSS. Foi detectado que as solicitações pertencentes ao ataque foram redirecionadas com o código de status 302. Por esta razão, o ataque não foi bem sucedido. O escalonamento para o próximo nível não é necessário, pois o ataque não é bem-sucedido.
 
 
 
