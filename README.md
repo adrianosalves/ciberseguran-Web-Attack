@@ -494,3 +494,41 @@ Alert Trigger Reason: Requested URL Contains OR 1 = 1
 Device Action: Allowed
 Show Hint 
 
+Incident Details
+Incident Name:	EventID: 115 - [SOC165 - Possible SQL Injection Payload Detected]
+Description:	AlertID: 115 + User: adriano@alvesnet.com.br
+Incident Type:	Web Attack
+Created Date:	June 16, 2022, 6:49 p.m.
+
+**Entenda por que o alerta foi acionado**
+
+Para realizar uma melhor análise e determinar se o alerta acionado é falso positivo, primeiro é necessário entender por que a regra foi acionada. Em vez de iniciar a análise diretamente, primeiro entenda por que essa regra foi acionada.
+
+Examine o nome da regra. Os nomes das regras geralmente são criados especificamente para que o ataque seja detectado. Ao examinar o nome da regra, você pode entender qual ataque está enfrentando.
+Detecte entre quais dois dispositivos o tráfego está ocorrendo. É um bom ponto de partida para entender a situação aprendendo sobre a direção do tráfego, qual protocolo é usado entre dispositivos etc.
+
+**Coletar dados**
+
+Reúna algumas informações que podem ser coletadas rapidamente para entender melhor o tráfego. Estes podem ser resumidos da seguinte forma.
+
+Propriedade dos endereços IP e dispositivos.
+Se o tráfego vem de fora (Internet); **sim**
+Propriedade do endereço IP (Endereço estático ou de pool? **estático** Quem é o proprietário? 	**DigitalOcean LLC** É hospedagem na web? **sim**)
+Reputação do endereço IP (Pesquisa no VirusTotal: **malicioso**, AbuseIPDB: **Confidence of Abuse**, Cisco Talos: **Questionable**)
+Se o tráfego for proveniente da rede da empresa; N/A
+Nome de host do dispositivo: N/A
+Quem é o proprietário do dispositivo (nome de usuário): N/A
+Hora do último logon do usuário: N/A
+
+**Examinar o tráfego HTTP**
+
+Verifique o conteúdo do tráfego para quaisquer condições suspeitas, como cargas úteis de ataque da Web (SQL Injection, XSS, Command Injection, IDOR, RFI/LFI).
+
+Examine todos os campos na solicitação HTTP. Como os invasores não atacam apenas pela URL, todos os dados da fonte devem ser examinados para entender se realmente há um ataque cibernético.
+
+Você pode revisar o tutorial Web Attacks 101 para obter informações sobre ataques em aplicativos da Web e como detectar esses ataques.
+
+
+
+
+
