@@ -660,50 +660,40 @@ Carga útil: <script>window.location='https://google.com'</script>
 
 https://letsdefend.io/xss_example.php?user=%3Cscript%3Ewindow.location=%27https://google.com%27%3C/script%3E
 
+<img src=https://github.com/adrianosalves/ciberseguran-Web-Attack/blob/main/XSS-google-redirect-1.png>
 
 
 Claro que não vamos direcioná-lo para um aplicativo da web. Direcioná-lo para o Google será suficiente como exemplo. Quando o usuário clicar na URL, ele será direcionado ao Google em vez do aplicativo web LetsDefend perfeito. 
 
+<img src=https://github.com/adrianosalves/ciberseguran-Web-Attack/blob/main/XSS-google-redirect-2.png>
 
+**Como os invasores aproveitam os ataques XSS**
 
-
-
-
-
-
-Como os invasores aproveitam os ataques XSS
 Como o XSS é um método de ataque baseado no cliente, pode parecer menos importante do que outros métodos de ataque, mas os ataques XSS e seu impacto não devem ser considerados como garantidos.
 
 Os invasores podem fazer o seguinte com um ataque XSS:
 
+- Roubar as informações da sessão de um usuário
 
-Roubar as informações da sessão de um usuário
+- Iniciar processos que um usuário pode     
 
-Iniciar processos que um usuário pode     
-
-Capturar credenciais
+- Capturar credenciais
 
 …e outras várias funções.
 
-
-
-
-Como prevenir uma vulnerabilidade XSS
+**Como prevenir uma vulnerabilidade XSS**
 
 Higienize os dados provenientes de um usuário: nunca confie nos dados provenientes de um usuário. Se os dados do usuário precisarem ser processados ​​e salvos, eles devem ser codificados com codificação html usando caracteres especiais e somente então devem ser salvos.
 
-Use um framework: a maioria dos frameworks vem com medidas preventivas contra ataques XSS.
+**1. Use um framework:** a maioria dos frameworks vem com medidas preventivas contra ataques XSS.
 
-Use a estrutura corretamente: Quase todas as estruturas usadas para desenvolver aplicativos da Web vêm com um recurso de saneamento, mas se isso não for usado corretamente, ainda há uma chance de ocorrência de vulnerabilidades XSS. 
+**2. Use a estrutura corretamente:** Quase todas as estruturas usadas para desenvolver aplicativos da Web vêm com um recurso de saneamento, mas se isso não for usado corretamente, ainda há uma chance de ocorrência de vulnerabilidades XSS. 
 
-Mantenha seu framework atualizado: Frameworks são desenvolvidos por humanos, então eles também podem conter vulnerabilidades XSS. Mas esses tipos de vulnerabilidade geralmente são corrigidos por atualizações de segurança. Portanto, você deve certificar-se de ter concluído as atualizações de segurança do seu framework.
+**3. Mantenha seu framework atualizado:** Frameworks são desenvolvidos por humanos, então eles também podem conter vulnerabilidades XSS. Mas esses tipos de vulnerabilidade geralmente são corrigidos por atualizações de segurança. Portanto, você deve certificar-se de ter concluído as atualizações de segurança do seu framework.
 
+**Detectando ataques XSS**
 
-
-
-Detectando ataques XSS
 Como mencionamos no artigo anterior, de acordo com um estudo feito pela Acunetix, 75% dos ataques cibernéticos são realizados em aplicativos da web. Como o XSS é uma das vulnerabilidades testadas com mais frequência, você verá muitas delas durante sua carreira como analista de SOC.
-
 
 Procure por palavras-chave: A maneira mais fácil de detectar ataques XSS é procurar palavras-chave como “alerta” e “script”, que são comumente usadas em cargas XSS.
 
@@ -711,15 +701,11 @@ Familiarize-se com cargas úteis XSS usadas com frequência: os invasores usam p
 
 Verifique se algum caractere especial foi usado: verifique os dados provenientes de um usuário para ver se algum caractere especial usado com frequência em cargas XSS como maior que (>) ou menor que (<) está presente. 
 
+**Exemplo de detecção**
 
-
-
-Exemplo de detecção
 Neste exemplo, vemos logs de acesso de um servidor Apache com Wordpress. Não se esqueça de revisitar nosso artigo sobre “Detectando ataques de injeção de SQL” para obter mais informações sobre logs de acesso.
 
-
-
-
+<img src=https://github.com/adrianosalves/ciberseguran-Web-Attack/blob/main/XSS-apache-access-log.png>
 
 Agora, vamos examinar os logs de acesso que foram fornecidos. 
 
@@ -729,17 +715,13 @@ Em primeiro lugar, vamos dar uma olhada geral nas solicitações que foram feita
 
 Quando olhamos os logs, notamos palavras relacionadas ao javascript, como “script”, “prompt” e “console.log”. Quando vemos javascript, imediatamente nos lembramos do XSS. Se fizermos uma decodificação de URL poderemos facilmente entender as solicitações que são feitas.
 
-
-
-
+<img src=https://github.com/adrianosalves/ciberseguran-Web-Attack/blob/main/xss-apache-access-log-date.png>
 
 Quando damos outra olhada nos logs de acesso depois de realizar uma decodificação de URL, vemos claramente as cargas XSS. Definitivamente, podemos dizer que o aplicativo Wordpress do qual obtivemos esses logs de acesso se tornou vítima de um ataque XSS.
 
 Quando olhamos para os endereços IP solicitados, vemos que há mais de um. Mais de um invasor está tentando executar um ataque XSS simultaneamente? Ou o invasor está constantemente mudando seu endereço IP para evitar ser bloqueado por produtos de segurança como firewalls e IPS? Se você verificar o endereço IP, verá que ele pertence à Cloudflare. Como o aplicativo Wordpress foi colocado atrás da Cloudflare, é bastante normal que a Cloudflare esteja fazendo a solicitação.
 
-
-
-
+<img src=https://github.com/adrianosalves/ciberseguran-Web-Attack/blob/main/xss-apache-access-log-with-url-decoding.png>
 
 Quando examinamos as datas das solicitações, descobrimos que houve uma solicitação feita a cada 3-4 segundos. Não é realmente possível para um humano tentar inserir tantos payloads XSS em tão pouco tempo, mas você pode não ter certeza de que o número de solicitações feitas por segundo é excessivo. Temos sorte porque temos as informações do User-Agent neste exemplo. Se examinarmos esta informação, veremos que ela pertence a uma biblioteca urllib. Isso nos mostra que essas solicitações foram feitas por meio de uma ferramenta automatizada de verificação de vulnerabilidades.
 
@@ -748,7 +730,6 @@ Então o ataque foi bem sucedido?
 Não podemos dizer nada definitivo porque não temos acesso às respostas. 
 
 Como resultado dos nossos exames: 
-
 
 É determinado que o ataque teve como alvo o aplicativo da Web de onde vieram os logs de acesso.
 
