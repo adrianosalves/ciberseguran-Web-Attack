@@ -842,6 +842,51 @@ Decida se o tráfego é malicioso ou não com base em suas investigações.
 
 não Malicioso
 
+**Qual é o tipo de ataque?**
+
+Qual dos seguintes é o vetor de ataque no tráfego malicioso que você detectou como resultado de suas investigações?
+
+Injeção de Comando
+IDOR 
+LFI e RFI 
+Outro 
+Injeção SQL 
+**XSS(x)**
+
+**Verifique se é um teste planejado**
+
+Testes de penetração ou produtos de simulação de ataque podem acionar alarmes de falso positivo se as regras não forem definidas corretamente. Verifique se o tráfego malicioso é o resultado de um teste planejado.
+
+Verifique se há um e-mail mostrando que haverá trabalho planejado pesquisando informações como nome do host, nome de usuário, endereço IP na caixa de correio.
+Verifique se o dispositivo gerador de tráfego malicioso pertence a produtos de simulação de ataque. Se o nome do host contém o nome de produtos de simulação de ataque (como Verodin, AttackIQ, Picus…), esses dispositivos pertencem a produtos de simulação de ataque dentro da estrutura de simulação LetsDefend e é um trabalho planejado.
+O tráfego malicioso é causado por um teste planejado?
+
+**Não planejado (x)**
+Planejado
+
+**Qual é a direção do trânsito?**
+
+Selecione a direção do tráfego malicioso nas opções disponíveis abaixo.
+
+Formato: Origem -> Destino
+
+Rede da Empresa → Rede da Empresa 
+Rede da empresa → Internet 
+**Internet → Rede da Empresa (x)**
+
+**Verifique se o ataque foi bem sucedido**
+Investigue se o ataque foi bem-sucedido. Os mecanismos de detecção variam de acordo com o tipo de ataque. Algumas dicas que podem ajudar na sua investigação;
+
+Nos ataques de injeção de comando, você pode entender se o ataque foi bem-sucedido observando o "Histórico de comandos" do dispositivo relevante por meio do Endpoint Security. Nos ataques de SQL Injection, os invasores podem executar comandos no dispositivo com a ajuda de funções como "xp_cmdshell". Por esse motivo, talvez seja necessário examinar o "Histórico de comandos" em ataques de injeção de SQL.
+Você pode adivinhar observando o tamanho da resposta HTTP em ataques SQL Injection e IDOR.
+Você pode acessar o treinamento Web Attacks 101 abaixo, no qual explicamos como você pode entender se o ataque é bem-sucedido ou não de acordo com o tipo de ataque.
+
+
+
+
+
+
+
 
 
 
