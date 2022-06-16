@@ -1,16 +1,4 @@
-# Cibersegurança Forense Digital
-
-**Ferramentas de Analise:**
-
-https://app.any.run/
-
-**Ataques para Aplicaçoes Web:**
-
-https://www.acunetix.com/websitesecurity/web-application-attack/
-
-
-
-Estudos OWASP:
+# Cibersegurança
 
 **Introdução** 
 
@@ -145,8 +133,12 @@ Para detectar uma anomalia, devemos primeiro entender como a tecnologia funciona
 
 Para começar, é importante saber que o protocolo HTTP está na 7ª camada do modelo OSI. Isso significa que protocolos como Ethernet, IP, TCP e SSL são usados ​​antes do protocolo HTTP.
 
+<img src=https://github.com/adrianosalves/ciberseguran-a-forense-digital/blob/main/HTTP-Protocol-TCP-IP-Model-OSI-Model.png>
+
 
 A comunicação HTTP ocorre entre o servidor e o cliente. Primeiro, o cliente solicita um recurso específico do servidor. O servidor recebe a solicitação HTTP e envia de volta uma (Resposta HTTP) ao cliente após passá-la por determinados controles e processos. O dispositivo do cliente recebe a resposta e exibe o recurso solicitado em um formato apropriado.
+
+<img src=https://github.com/adrianosalves/ciberseguran-a-forense-digital/blob/main/HTTP-Request-and-HTTP-Response.png>
 
 
 Vamos examinar as solicitações HTTP e as respostas HTTP com mais detalhes.
@@ -157,25 +149,25 @@ Uma solicitação HTTP é usada para recuperar um determinado recurso de um serv
 
 Existe um formato HTTP padrão e todas as solicitações devem obedecer a esse formato para que os servidores da Web possam entender a solicitação. Se a solicitação for enviada em um formato diferente, o servidor da Web não a entenderá e enviará um erro ao usuário ou o servidor da Web pode não ser capaz de fornecer o serviço (que é outro tipo de ataque).
 
+<img src=https://github.com/adrianosalves/ciberseguran-a-forense-digital/blob/main/HTTP-Request.png>
+
 Uma linha de solicitação HTTP consiste em uma linha de solicitação, cabeçalhos de solicitação e um corpo de mensagem de solicitação. Uma linha de solicitação consiste no método HTTP e no recurso solicitado do servidor web. O cabeçalho da solicitação contém determinados cabeçalhos que o servidor processará. O corpo da mensagem de solicitação contém dados que devem ser enviados ao servidor.
 
 Na imagem acima você vê um exemplo de uma solicitação HTTP. Vamos examinar essa solicitação HTTP linha por linha.
 
-O método GET informa que o recurso “/” é solicitado do servidor. Como não há nome, um símbolo como “/” significa que a página principal do servidor web é solicitada.
-Hoje em dia existem aplicativos web que pertencem a mais de um domínio encontrados em um único servidor web, então os navegadores usam o cabeçalho “Host” para descrever a qual domínio o recurso solicitado pertence.
-Quando um aplicativo da web deseja armazenar informações no dispositivo do cliente, ele as armazena em um cabeçalho “Cookie”. Os cookies são geralmente usados ​​para armazenar informações de sessão. Portanto, você não precisa digitar novamente seu nome de usuário e senha ao visitar um aplicativo da Web que exija login. 
-O cabeçalho “Upgrade-Insecure-Requests” é usado para indicar que o cliente deseja se comunicar com criptografia (SSL).
-Há informações sobre o navegador e o sistema operacional do cliente no cabeçalho "User-Agent'". Os servidores da Web usam essas informações para enviar respostas HTTP específicas ao cliente. Você pode encontrar alguns scanners de vulnerabilidade automatizados olhando sob este cabeçalho.
-O tipo de dados solicitados encontra-se no cabeçalho “Aceitar”.
-O tipo de codificação que o cliente entende é encontrado no cabeçalho “Accept-Encoding”. Normalmente, você pode encontrar nomes de algoritmos de compactação nesse cabeçalho.
-Sob o cabeçalho “Accept-Language” você pode encontrar as informações de idioma do cliente. O servidor web usa essas informações para exibir o conteúdo preparado no idioma do cliente.
-O cabeçalho “Connection” mostra como será feita a conexão HTTP. Se houver algum dado como “fechar” encontrado aqui, significa que a conexão TCP será fechada após o recebimento da resposta HTTP. Se você vir "Keep-alive", isso significa que a conexão será continuada.
-Uma linha vazia é colocada entre o cabeçalho da solicitação HTTP e o corpo da mensagem da solicitação HTTP para fazer uma partição.
-Outros dados destinados a serem enviados para o aplicativo da Web são encontrados no Corpo da mensagem de solicitação. Se o método HTTP POST for usado, os parâmetros POST poderão ser encontrados aqui.
+- 1. O método GET informa que o recurso “/” é solicitado do servidor. Como não há nome, um símbolo como “/” significa que a página principal do servidor web é solicitada.
+- 2. Hoje em dia existem aplicativos web que pertencem a mais de um domínio encontrados em um único servidor web, então os navegadores usam o cabeçalho “Host” para descrever a qual domínio o recurso solicitado pertence.
+- 3. Quando um aplicativo da web deseja armazenar informações no dispositivo do cliente, ele as armazena em um cabeçalho “Cookie”. Os cookies são geralmente usados ​​para armazenar informações de sessão. Portanto, você não precisa digitar novamente seu nome de usuário e senha ao visitar um aplicativo da Web que exija login. 
+- 4. O cabeçalho “Upgrade-Insecure-Requests” é usado para indicar que o cliente deseja se comunicar com criptografia (SSL).
+- 5. Há informações sobre o navegador e o sistema operacional do cliente no cabeçalho "User-Agent'". Os servidores da Web usam essas informações para enviar respostas HTTP específicas ao cliente. Você pode encontrar alguns scanners de vulnerabilidade automatizados olhando sob este cabeçalho.
+- 6. O tipo de dados solicitados encontra-se no cabeçalho “Aceitar”.
+- 7. O tipo de codificação que o cliente entende é encontrado no cabeçalho “Accept-Encoding”. Normalmente, você pode encontrar nomes de algoritmos de compactação nesse cabeçalho.
+- 8. Sob o cabeçalho “Accept-Language” você pode encontrar as informações de idioma do cliente. O servidor web usa essas informações para exibir o conteúdo preparado no idioma do cliente.
+- 9. O cabeçalho “Connection” mostra como será feita a conexão HTTP. Se houver algum dado como “fechar” encontrado aqui, significa que a conexão TCP será fechada após o recebimento da resposta HTTP. Se você vir "Keep-alive", isso significa que a conexão será continuada.
+- 10. Uma linha vazia é colocada entre o cabeçalho da solicitação HTTP e o corpo da mensagem da solicitação HTTP para fazer uma partição.
+- 11. Outros dados destinados a serem enviados para o aplicativo da Web são encontrados no Corpo da mensagem de solicitação. Se o método HTTP POST for usado, os parâmetros POST poderão ser encontrados aqui.
 
-
-
-**Respostas HTTP** 
+#Respostas HTTP
 
 Uma vez que o servidor web recebe uma solicitação HTTP, ele executa os controles e processos necessários e, em seguida, envia o recurso solicitado ao cliente. Não há um processo uniforme aqui porque existem inúmeras tecnologias e designs envolvidos. O servidor pode extrair dados do banco de dados de acordo com o recurso solicitado ou pode processar de acordo com os dados recebidos. Mas a Mensagem de Resposta HTTP deve chegar ao cliente após todo o processamento.
 
@@ -183,8 +175,7 @@ Uma mensagem de resposta HTTP contém uma linha de status, cabeçalhos de respos
 
 Se uma página da web foi solicitada, geralmente haverá códigos HTML no corpo da resposta. Quando o cliente recebe o código HTML, o navegador da Web processa o código HTML e exibe a página da Web.
 
-
-
+<img src=https://github.com/adrianosalves/ciberseguran-a-forense-digital/blob/main/HTTP-Response.png>
 
 
 Você pode ver uma solicitação de resposta HTTP na imagem acima. Vamos examinar uma solicitação de resposta HTTP com base nessa imagem.
@@ -227,17 +218,12 @@ Aqui estão alguns cabeçalhos de resposta HTTP que você pode encontrar com fre
 
 
 
-
 Corpo de resposta
 
 O Corpo de Resposta HTTP contém o recurso que foi enviado pelo servidor e solicitado pelo cliente. 
 
 
-
-
-
-
-Progresso das perguntas
+#Progresso das perguntas
 
 Qual cabeçalho de solicitação HTTP contém informações do navegador e do sistema operacional?
 
