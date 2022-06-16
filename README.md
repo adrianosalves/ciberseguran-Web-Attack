@@ -783,6 +783,47 @@ Correct Answer!
 
 🔗 116 - SOC166 - Código Javascript detectado na URL solicitada
 
+Medium	Feb. 26, 2022, 6:56 p.m.	SOC166 - Javascript Code Detected in Requested URL	116	Web Attack	
+ 
+EventID: 116
+Event Time: Feb. 26, 2022, 6:56 p.m.
+Rule: SOC166 - Javascript Code Detected in Requested URL
+Level: Security Analyst
+Hostname: WebServer1002
+Destination IP Address: 172.16.17.17
+Source IP Address: 112.85.42.13
+HTTP Request Method: GET
+Requested URL: https://172.16.17.17/search/?q=<$script>javascript:$alert(1)<$/script>
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+Alert Trigger Reason: Javascript code detected in URL
+Device Action: Allowed
+Show Hint 
+
+Incident Details
+Incident Name:	EventID: 116 - [SOC166 - Javascript Code Detected in Requested URL]
+Description:	AlertID: 116 + User: adriano@alvesnet.com.br
+Incident Type:	Web Attack
+Created Date:	June 16, 2022, 11:36 p.m.
+
+**Entenda por que o alerta foi acionado**
+
+Para realizar uma melhor análise e determinar se o alerta acionado é falso positivo, primeiro é necessário entender por que a regra foi acionada. Em vez de iniciar a análise diretamente, primeiro entenda por que essa regra foi acionada.
+
+Examine o nome da regra. Os nomes das regras geralmente são criados especificamente para que o ataque seja detectado. Ao examinar o nome da regra, você pode entender qual ataque está enfrentando.
+Detecte entre quais dois dispositivos o tráfego está ocorrendo. É um bom ponto de partida para entender a situação aprendendo sobre a direção do tráfego, qual protocolo é usado entre os dispositivos etc.
+
+**Coletar dados**
+
+Reúna algumas informações que podem ser coletadas rapidamente para entender melhor o tráfego. Estes podem ser resumidos da seguinte forma.
+
+Propriedade dos endereços IP e dispositivos.
+Se o tráfego vem de fora (Internet);
+Propriedade do endereço IP (Endereço estático ou de pool? Quem é o proprietário? É hospedagem na web?)
+Reputação do endereço IP (Pesquisa no VirusTotal, AbuseIPDB, Cisco Talos)
+Se o tráfego for proveniente da rede da empresa;
+Nome de host do dispositivo
+Quem é o proprietário do dispositivo (nome de usuário)
+Hora do último logon do usuário
 
 
 
