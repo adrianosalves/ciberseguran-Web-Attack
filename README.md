@@ -739,34 +739,47 @@ Como o aplicativo está por trás da Cloudflare, os endereços IP de origem não
 
 Não sabemos se o ataque foi bem sucedido ou não.
 
-Arquivos do curso
+# Course Files
 
-Nome do arquivo: XSS - Web Attacks.rar
+Filename: XSS - Web Attacks.rar
 
-Tamanho: 3 KB
+Size: 3 KB
 
-Senha: acesso
-
-
-Progresso das perguntas
-
-(Investigar arquivo 'XSS - Web Attacks') Qual é o endereço IP do invasor que executou o ataque XSS?
-
-(Investigue o arquivo 'XSS - Web Attacks') O ataque XSS foi bem-sucedido?
-
-(Investigue o arquivo 'XSS - Web Attacks') Em que data o ataque XSS começou? (Formato: MM/DD/AAAA HH:MM)
+Password: access
 
 
+# Progresso das perguntas
 
-Data exata em que a carga maliciosa foi enviada
+(Investigate 'XSS - Web Attacks' File) What is the IP address of the attacker who performed the XSS attack?
 
-(Investigar arquivo 'XSS - Web Attacks') Qual é o tipo de ataque XSS? (Refletido, Armazenado, Baseado em Dom)
+192.168.31.183
+Correct Answer!
 
 
+Access logs also contains source IP Address
 
--
+(Investigate 'XSS - Web Attacks' File) Was the XSS attack successful?
 
-Pratique com alertas SOC
+yes
+Correct Answer!
+
+
+Look for response sizes
+
+(Investigate 'XSS - Web Attacks' File) What date did the XSS Attack start? (Format: MM/DD/YYYY HH:MM)
+
+03/01/2022 08:53
+Correct Answer!
+
+
+Exact date when malicious payload sent
+
+(Investigate 'XSS - Web Attacks' File) What is the type of XSS attack? (Reflected, Stored, Dom based)
+
+Reflected
+Correct Answer!
+
+# Pratique com alertas SOC
 
 🔗 116 - SOC166 - Código Javascript detectado na URL solicitada
 
