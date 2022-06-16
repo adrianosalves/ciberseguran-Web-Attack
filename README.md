@@ -455,4 +455,38 @@ Download: https://github.com/adrianosalves/ciberseguran-a-forense-digital/blob/m
 🔗 115 - SOC165 - Possível carga útil de injeção de SQL detectada
 
 
+Progresso das perguntas
+
+(Investigar arquivo 'SQL Injection - Web Attacks') Qual é o endereço IP do invasor que executou o ataque SQL Injection?
+
+192.168.31.167
+Resposta correta!
+
+
+Os logs de acesso também contêm o endereço IP de origem
+
+(Investigar arquivo 'SQL Injection - Web Attacks') O ataque de SQL Injection foi bem-sucedido? (Sim não)
+
+sim
+Resposta correta!
+
+
+Procure tamanhos de resposta
+
+(Investigar arquivo 'SQL Injection - Web Attacks') Qual é o tipo de ataque de SQL Injection? (Clássico, cego, fora de banda)
+
+Clássico
+Resposta correta!
+
+
+-
+
+(Investigar arquivo 'SQL Injection - Web Attacks') Em que data começou a fase de exploração do SQL Injection Attack? (Formato: MM/DD/AAAA HH:MM)
+
+03/01/2022 08:35
+Resposta correta!
+
+
+Data exata em que a carga maliciosa foi enviada
+
 
