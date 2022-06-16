@@ -523,10 +523,109 @@ Hora do último logon do usuário: N/A
 **Examinar o tráfego HTTP**
 
 Verifique o conteúdo do tráfego para quaisquer condições suspeitas, como cargas úteis de ataque da Web (SQL Injection, XSS, Command Injection, IDOR, RFI/LFI).
+**SQL Injection**
+https://172.16.17.18/search/?q=" OR 1 = 1 -- -
 
 Examine todos os campos na solicitação HTTP. Como os invasores não atacam apenas pela URL, todos os dados da fonte devem ser examinados para entender se realmente há um ataque cibernético.
 
 Você pode revisar o tutorial Web Attacks 101 para obter informações sobre ataques em aplicativos da Web e como detectar esses ataques.
+
+**O tráfego é malicioso?**
+
+Decida se o tráfego é malicioso ou não com base em suas investigações.
+
+**Malicioso(x)**  
+
+Não malicioso
+
+Você pode encontrar nosso treinamento relacionado abaixo. 
+Ataques na Web 101
+
+**Qual é o tipo de ataque?**
+
+Qual dos seguintes é o vetor de ataque no tráfego malicioso que você detectou como resultado de suas investigações?
+
+Injeção de Comando 
+IDOR 
+LFI e RFI 
+Outro 
+**Injeção SQL (x)**
+XSS
+
+**Verifique se é um teste planejado**
+
+Testes de penetração ou produtos de simulação de ataque podem acionar alarmes de falso positivo se as regras não forem definidas corretamente. Verifique se o tráfego malicioso é o resultado de um teste planejado.
+
+Verifique se há um e-mail mostrando que haverá trabalho planejado pesquisando informações como nome do host, nome de usuário, endereço IP na caixa de correio.
+Verifique se o dispositivo gerador de tráfego malicioso pertence a produtos de simulação de ataque. Se o nome do host contém o nome de produtos de simulação de ataque (como Verodin, AttackIQ, Picus…), esses dispositivos pertencem a produtos de simulação de ataque dentro da estrutura de simulação LetsDefend e é um trabalho planejado.
+O tráfego malicioso é causado por um teste planejado?
+
+**Não planejado**
+Planejado
+
+**Qual é a direção do trânsito?**
+
+Selecione a direção do tráfego malicioso nas opções disponíveis abaixo.
+
+Formato: Origem -> Destino
+
+Rede da Empresa → Rede da Empresa 
+Rede da empresa → Internet 
+**Internet → Rede da Empresa (x)**
+
+**Verifique se o ataque foi bem sucedido**
+
+Investigue se o ataque foi bem-sucedido. Os mecanismos de detecção variam de acordo com o tipo de ataque. Algumas dicas que podem ajudar na sua investigação;
+
+Nos ataques de injeção de comando, você pode entender se o ataque foi bem-sucedido observando o "Histórico de comandos" do dispositivo relevante por meio do Endpoint Security. Nos ataques de SQL Injection, os invasores podem executar comandos no dispositivo com a ajuda de funções como "xp_cmdshell". Por esse motivo, talvez seja necessário examinar o "Histórico de comandos" em ataques de injeção de SQL.
+Você pode adivinhar observando o tamanho da resposta HTTP em ataques SQL Injection e IDOR.
+Você pode acessar o treinamento Web Attacks 101 abaixo, no qual explicamos como você pode entender se o ataque é bem-sucedido ou não de acordo com o tipo de ataque.
+
+**O ataque foi bem sucedido?**
+Selecione “Sim” se você descobriu que o ataque foi bem-sucedido como resultado de suas investigações e “Não” se você descobriu que o ataque não teve êxito.
+
+**No (x)**
+Sim
+
+**Adicionar artefatos**
+
+Valor	Modelo	Comente	Remover
+https://172.16.17.18/search/?q=" OR 1 = 1 -- -
+
+Endereço URL
+SQL Injection
+X
+
+**Você precisa de escalonamento de nível 2?**
+
+O escalonamento de nível 2 deve ser executado nas seguintes situações.
+
+Nos casos em que o ataque for bem-sucedido,
+Quando o invasor compromete um dispositivo na rede interna (nos casos em que a direção do tráfego prejudicial é de dentro → de dentro),
+O escalonamento de nível 2 não é necessário nos seguintes casos.
+
+Nos casos em que os ataques da Internet não são bem-sucedidos
+** As instituições podem ter seu próprio procedimento de escalonamento. Não se esqueça de conhecer o procedimento de escalonamento em sua instituição.
+
+Executar o escalonamento de nível 2?
+
+**No (x)**
+Sim
+
+
+**Nota do analista**
+7
+
+**Termine o livro!**
+
+Por favor, clique no botão confirmar para terminar o playbook. Suas respostas serão salvas e o caso será encerrado.
+
+Seus artefatos devem ser listados no caso depois de clicar no botão Concluir.
+
+
+
+
+
 
 
 
