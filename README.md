@@ -294,7 +294,7 @@ SELECT * FROM users WHERE nome de usuário = ' USERNAME ' E senha = ' USER_PASSW
 
 O significado desta consulta SQL é “traga-me todas as informações sobre o usuário da tabela de usuários cujo nome é USERNAME e cuja senha é USER_PASSWORD ”. Se o aplicativo da web encontrar um usuário correspondente, ele autenticará o usuário, se não puder encontrar um usuário após a consulta ser realizada, o login não será bem-sucedido.
 
-<img =src=https://github.com/adrianosalves/ciberseguran-a-forense-digital/blob/main/Login-page.png>
+<img src=https://github.com/adrianosalves/ciberseguran-a-forense-digital/blob/main/Login-page.png>
 
 
 Digamos que seu nome de usuário seja “ john ” e sua senha seja “ supersecretpassword ”. Quando você insere essas informações e clica no botão de login, a consulta SQL que você vê abaixo será consultada e você poderá entrar porque houve uma correspondência encontrada após a consulta SQL.
@@ -444,21 +444,6 @@ Download: https://github.com/adrianosalves/ciberseguran-a-forense-digital/blob/m
 
 (Investigar arquivo 'SQL Injection - Web Attacks') Qual é o endereço IP do invasor que executou o ataque SQL Injection?
 
-(Investigar arquivo 'SQL Injection - Web Attacks') O ataque de SQL Injection foi bem-sucedido? (Sim não)
-
-(Investigar arquivo 'SQL Injection - Web Attacks') Qual é o tipo de ataque de SQL Injection? (Clássico, cego, fora de banda)
-
-(Investigar arquivo 'SQL Injection - Web Attacks') Em que data começou a fase de exploração do SQL Injection Attack? (Formato: MM/DD/AAAA HH:MM)
-
-**Pratique com alertas SOC**
-
-🔗 115 - SOC165 - Possível carga útil de injeção de SQL detectada
-
-
-Progresso das perguntas
-
-(Investigar arquivo 'SQL Injection - Web Attacks') Qual é o endereço IP do invasor que executou o ataque SQL Injection?
-
 192.168.31.167
 Resposta correta!
 
@@ -478,7 +463,6 @@ Procure tamanhos de resposta
 Clássico
 Resposta correta!
 
-
 -
 
 (Investigar arquivo 'SQL Injection - Web Attacks') Em que data começou a fase de exploração do SQL Injection Attack? (Formato: MM/DD/AAAA HH:MM)
@@ -486,7 +470,27 @@ Resposta correta!
 03/01/2022 08:35
 Resposta correta!
 
-
 Data exata em que a carga maliciosa foi enviada
 
+
+**Pratique com alertas SOC**
+
+🔗 115 - SOC165 - Possível carga útil de injeção de SQL detectada
+
+SEVERITY	DATE	RULE NAME	EVENTID	TYPE	ACTION
+High	Feb. 25, 2022, 11:34 a.m.	SOC165 - Possible SQL Injection Payload Detected	115	Web Attack	
+ 
+EventID: 115
+Event Time: Feb. 25, 2022, 11:34 a.m.
+Rule: SOC165 - Possible SQL Injection Payload Detected
+Level: Security Analyst
+Hostname: WebServer1001
+Destination IP Address: 172.16.17.18
+Source IP Address: 167.99.169.17
+HTTP Request Method: GET
+Requested URL: https://172.16.17.18/search/?q=%22%20OR%201%20%3D%201%20--%20-
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+Alert Trigger Reason: Requested URL Contains OR 1 = 1
+Device Action: Allowed
+Show Hint 
 
