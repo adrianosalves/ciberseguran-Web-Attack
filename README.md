@@ -612,16 +612,182 @@ Executar o escalonamento de nível 2?
 **No (x)**
 Sim
 
+# Detectando ataques de Cross Site Scripting (XSS)
 
-**Nota do analista**
-7
+**O que é Cross Site Scripting (XSS)?**
 
-**Termine o livro!**
+Cross Site Scripting (XSS), é um tipo de vulnerabilidade de segurança da Web baseada em injeção que está incluída em aplicativos da Web legítimos e permite a execução de código malicioso.
 
-Por favor, clique no botão confirmar para terminar o playbook. Suas respostas serão salvas e o caso será encerrado.
+<img src=https://github.com/adrianosalves/ciberseguran-Web-Attack/blob/main/xss.png>
 
-Seus artefatos devem ser listados no caso depois de clicar no botão Concluir.
+Hoje, a maioria dos frameworks usados ​​para desenvolver aplicativos da Web tomou medidas preventivas contra ataques de script entre sites. Mas ainda vemos vulnerabilidades XSS com frequência hoje porque os frameworks às vezes não são usados, ou o próprio framework tem uma vulnerabilidade XSS e os dados provenientes do usuário não são higienizados.
 
+Tipos XSS
+Existem 3 tipos diferentes de XSS. Estes são: 
+
+- 1. **XSS refletido (não persistente):** é um tipo de XSS não persistente que a carga XSS deve conter na solicitação. É o tipo mais comum de XSS.
+
+- 2. **XSS armazenado (persistente):** é um tipo de XSS em que o invasor pode carregar permanentemente a carga XSS para o aplicativo da web. Comparado a outros tipos, o tipo mais perigoso de XSS é o Stored XSS.
+
+- 3. **XSS baseado em DOM:** XSS baseado em DOM é um ataque XSS em que a carga útil do ataque é executada como resultado da modificação do “ambiente” DOM no navegador da vítima usado pelo script do lado do cliente original, para que o código do lado do cliente seja executado em um “inesperado " maneiras. (OWASP)
+
+Como funciona o XSS?
+Assim como outros métodos de ataque na web, o XSS é uma vulnerabilidade de segurança que ocorre devido à falta de limpeza de dados. A vulnerabilidade XSS ocorre quando os dados recebidos do usuário são enviados na resposta sem sanitização.
+
+Vamos seguir um exemplo para entender melhor os ataques XSS.
+
+<img src=https://github.com/adrianosalves/ciberseguran-Web-Attack/blob/main/XSS-vulnerable-code.png>
+
+Vejamos o trecho de código acima. O que ele faz é realmente muito básico. Ele apenas exibe o que for inserido no parâmetro 'usuário'. Se inserirmos “LetsDefend” como parâmetro 'user', veremos as palavras “Hello LetsDefend”.
+
+<img src=https://github.com/adrianosalves/ciberseguran-Web-Attack/blob/main/XSS-image-1.png>
+
+Até agora, não há problema. Se inserirmos os dados apropriados no parâmetro do usuário, somos recebidos com uma saudação calorosa. Mas, como vimos acima, não há mecanismo de controle para o parâmetro do usuário. Isso significa que tudo o que inserirmos no parâmetro “user” será incluído na resposta HTTP que recebermos de volta.
+
+Então, o que aconteceria se não inserissemos um valor normal, mas, em vez disso, inserissemos uma carga útil que chamaria um pop-up?
+
+Carga útil: <script>alerta(1)</script>
+
+<img src=https://github.com/adrianosalves/ciberseguran-Web-Attack/blob/main/XSS-popup.png>
+
+
+
+Como tudo o que inserimos no parâmetro “user” é incluído diretamente na resposta HTTP, o código javascript que escrevemos funcionou e uma janela pop-up apareceu na tela.
+
+Então, é exatamente assim que o XSS funciona. Como o valor inserido pelo usuário não é confirmado, o invasor pode inserir o código javascript que desejar e obter o resultado desejado. E se o invasor quiser redirecionar o usuário para um site malicioso?
+
+Carga útil: <script>window.location='https://google.com'</script>
+
+https://letsdefend.io/xss_example.php?user=%3Cscript%3Ewindow.location=%27https://google.com%27%3C/script%3E
+
+
+
+Claro que não vamos direcioná-lo para um aplicativo da web. Direcioná-lo para o Google será suficiente como exemplo. Quando o usuário clicar na URL, ele será direcionado ao Google em vez do aplicativo web LetsDefend perfeito. 
+
+
+
+
+
+
+
+
+Como os invasores aproveitam os ataques XSS
+Como o XSS é um método de ataque baseado no cliente, pode parecer menos importante do que outros métodos de ataque, mas os ataques XSS e seu impacto não devem ser considerados como garantidos.
+
+Os invasores podem fazer o seguinte com um ataque XSS:
+
+
+Roubar as informações da sessão de um usuário
+
+Iniciar processos que um usuário pode     
+
+Capturar credenciais
+
+…e outras várias funções.
+
+
+
+
+Como prevenir uma vulnerabilidade XSS
+
+Higienize os dados provenientes de um usuário: nunca confie nos dados provenientes de um usuário. Se os dados do usuário precisarem ser processados ​​e salvos, eles devem ser codificados com codificação html usando caracteres especiais e somente então devem ser salvos.
+
+Use um framework: a maioria dos frameworks vem com medidas preventivas contra ataques XSS.
+
+Use a estrutura corretamente: Quase todas as estruturas usadas para desenvolver aplicativos da Web vêm com um recurso de saneamento, mas se isso não for usado corretamente, ainda há uma chance de ocorrência de vulnerabilidades XSS. 
+
+Mantenha seu framework atualizado: Frameworks são desenvolvidos por humanos, então eles também podem conter vulnerabilidades XSS. Mas esses tipos de vulnerabilidade geralmente são corrigidos por atualizações de segurança. Portanto, você deve certificar-se de ter concluído as atualizações de segurança do seu framework.
+
+
+
+
+Detectando ataques XSS
+Como mencionamos no artigo anterior, de acordo com um estudo feito pela Acunetix, 75% dos ataques cibernéticos são realizados em aplicativos da web. Como o XSS é uma das vulnerabilidades testadas com mais frequência, você verá muitas delas durante sua carreira como analista de SOC.
+
+
+Procure por palavras-chave: A maneira mais fácil de detectar ataques XSS é procurar palavras-chave como “alerta” e “script”, que são comumente usadas em cargas XSS.
+
+Familiarize-se com cargas úteis XSS usadas com frequência: os invasores usam principalmente as mesmas cargas úteis para procurar vulnerabilidades antes de explorar uma vulnerabilidade XSS. É por isso que se familiarizar com as cargas úteis XSS usadas com frequência facilitaria a detecção de vulnerabilidades XSS. Você pode examinar algumas cargas úteis usadas com frequência aqui . 
+
+Verifique se algum caractere especial foi usado: verifique os dados provenientes de um usuário para ver se algum caractere especial usado com frequência em cargas XSS como maior que (>) ou menor que (<) está presente. 
+
+
+
+
+Exemplo de detecção
+Neste exemplo, vemos logs de acesso de um servidor Apache com Wordpress. Não se esqueça de revisitar nosso artigo sobre “Detectando ataques de injeção de SQL” para obter mais informações sobre logs de acesso.
+
+
+
+
+
+Agora, vamos examinar os logs de acesso que foram fornecidos. 
+
+Em primeiro lugar, vamos dar uma olhada geral nas solicitações que foram feitas e tentar entendê-las. Vemos que todas as requisições foram feitas para a página “/blog/” e que apenas os valores dos parâmetros “s” foram alterados. Se você prestar atenção nas URLs das páginas da web que visita, notará que, ao realizar uma pesquisa no Wordpress, as palavras digitadas são enviadas usando o parâmetro “?s=". O exemplo que estamos vendo nos mostra que são buscas realizadas no Wordpress.
+
+É difícil encontrar exemplos facilmente legíveis, como o exemplo no artigo “Detecting SQL Injection Attacks”. Em vez disso, encontramos caracteres que se transformaram em %XX como resultado da codificação de URL. Vamos realizar a decodificação de URL a seguir, mas primeiro vamos dar uma olhada nos URLs e tentar ver se podemos reconhecer alguma palavra.
+
+Quando olhamos os logs, notamos palavras relacionadas ao javascript, como “script”, “prompt” e “console.log”. Quando vemos javascript, imediatamente nos lembramos do XSS. Se fizermos uma decodificação de URL poderemos facilmente entender as solicitações que são feitas.
+
+
+
+
+
+Quando damos outra olhada nos logs de acesso depois de realizar uma decodificação de URL, vemos claramente as cargas XSS. Definitivamente, podemos dizer que o aplicativo Wordpress do qual obtivemos esses logs de acesso se tornou vítima de um ataque XSS.
+
+Quando olhamos para os endereços IP solicitados, vemos que há mais de um. Mais de um invasor está tentando executar um ataque XSS simultaneamente? Ou o invasor está constantemente mudando seu endereço IP para evitar ser bloqueado por produtos de segurança como firewalls e IPS? Se você verificar o endereço IP, verá que ele pertence à Cloudflare. Como o aplicativo Wordpress foi colocado atrás da Cloudflare, é bastante normal que a Cloudflare esteja fazendo a solicitação.
+
+
+
+
+
+Quando examinamos as datas das solicitações, descobrimos que houve uma solicitação feita a cada 3-4 segundos. Não é realmente possível para um humano tentar inserir tantos payloads XSS em tão pouco tempo, mas você pode não ter certeza de que o número de solicitações feitas por segundo é excessivo. Temos sorte porque temos as informações do User-Agent neste exemplo. Se examinarmos esta informação, veremos que ela pertence a uma biblioteca urllib. Isso nos mostra que essas solicitações foram feitas por meio de uma ferramenta automatizada de verificação de vulnerabilidades.
+
+Então o ataque foi bem sucedido? 
+
+Não podemos dizer nada definitivo porque não temos acesso às respostas. 
+
+Como resultado dos nossos exames: 
+
+
+É determinado que o ataque teve como alvo o aplicativo da Web de onde vieram os logs de acesso.
+
+Depois de analisar a quantidade de solicitações e as informações do User-Agent, determinamos que o ataque foi realizado por um scanner de vulnerabilidade automatizado.
+
+Como o aplicativo está por trás da Cloudflare, os endereços IP de origem não foram encontrados.
+
+Não sabemos se o ataque foi bem sucedido ou não.
+
+Arquivos do curso
+
+Nome do arquivo: XSS - Web Attacks.rar
+
+Tamanho: 3 KB
+
+Senha: acesso
+
+
+Progresso das perguntas
+
+(Investigar arquivo 'XSS - Web Attacks') Qual é o endereço IP do invasor que executou o ataque XSS?
+
+(Investigue o arquivo 'XSS - Web Attacks') O ataque XSS foi bem-sucedido?
+
+(Investigue o arquivo 'XSS - Web Attacks') Em que data o ataque XSS começou? (Formato: MM/DD/AAAA HH:MM)
+
+
+
+Data exata em que a carga maliciosa foi enviada
+
+(Investigar arquivo 'XSS - Web Attacks') Qual é o tipo de ataque XSS? (Refletido, Armazenado, Baseado em Dom)
+
+
+
+-
+
+Pratique com alertas SOC
+
+🔗 116 - SOC166 - Código Javascript detectado na URL solicitada
 
 
 
